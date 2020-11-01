@@ -5,7 +5,7 @@ const fs = require('fs');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 
-const cookieParser = require('cookie-parser');
+const request = require('request-promise');
 
 
 const userModel = require('./models/user.js');
@@ -13,7 +13,6 @@ const userModel = require('./models/user.js');
 const app = express(); // express initialization
 app.use(express.urlencoded( {extended : true}));
 app.use(express.json());  //middleware for json payload parsing
-app.use(cookieParser());
 
 
 require('dotenv').config();
@@ -52,6 +51,26 @@ app.get('/profile',async (req,res) => {
 });
 app.get('/recycle',(req,res) => {
     res.render('recycle');
+});
+app.post('/submitImage', (req,res) => {
+    console.log(req.body);
+
+    // const options = {
+    //     uri : `https://hotel--backend.herokuapp.com/check-room-available?roomType=${roomType}&startDate=${Date.parse(d1)}&endDate=${Date.parse(d2)}&roomNeeded=${roomNeeded}`,
+    //     json: true,
+    //     resolveWithFullResponse: true,
+    //     method: 'GET',
+    //     headers : {
+    //     }
+    // }
+
+    // let response;
+    //     try{
+    //         response = await request(options)
+    //     }
+    //     catch(err){
+    //         console.log(err);
+    //     }
 });
 //Note index file of static is not rendered bcz the res.render('index') part is above of static implementation
 
