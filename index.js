@@ -51,13 +51,13 @@ app.get('/profile',async (req,res) => {
 app.get('/recycle',(req,res) => {
     res.render('recycle');
 });
-app.get('/submitImage',async (req,res) => {
+app.post('/submitImage',async (req,res) => {
 
     const options = {
         uri : `http://127.0.0.1:5000/for_mask`,
         json: true,
         resolveWithFullResponse: true,
-        method: 'GET',
+        method: 'POST',
         body : {
             'img1' : 'dress.jpg',
             'img2' : 'dress_soiled.jpg'
@@ -67,12 +67,14 @@ app.get('/submitImage',async (req,res) => {
     let response;
         try{
             response = await request(options);
-            console.log(response.body());
+            console.log(response);
         }
         catch(err){
             console.log(err);
         }
-    res.redirect('profile');
+        
+    const user = await userModel.findOne({username : 'vipin'});
+    res.render('profile',{username:user.username, myntraCoin:user.myntraCoin});
 });
 //Note index file of static is not rendered bcz the res.render('index') part is above of static implementation
 
