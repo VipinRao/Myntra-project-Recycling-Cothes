@@ -117,20 +117,20 @@
 				</div>
 				<div class="col-md-6 animate-box">
 					<h3>Upload Pictures</h3>
-					<form action="/submitImage" method="POST">
+					<form id= "formElem">
 						<div class="row form-group">
 							<div class="col-md-6">
 								<!-- <label for="fname">First Name</label> -->
-								<input name="picture1" type="File" id="picture1" class="form-control" accept="image/*">
+								<input name="img1" type="file" id="img1" class="form-control" accept="image/*">
 							</div>
 							<div class="col-md-6">
 								<!-- <label for="lname">Last Name</label> -->
-								<input name="picture2" type="File" id="picture2" class="form-control" accept="image/*">
+								<input name="img2" type="file" id="img2" class="form-control" accept="image/*">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<button type="submit" value="Sumbit & Recycle" class="btn btn-primary">
+							<input type="submit" value="Sumbit & Recycle" class="btn btn-primary">
 						</div>
 
 					</form>		
@@ -226,6 +226,20 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
+	<script>
+		formElem.onsubmit = async (e) => {
+			e.preventDefault();
+
+			let response = await fetch('http://127.0.0.1:5000/for_mask', {
+			method: 'POST',	
+			body: new FormData(formElem)
+			});
+
+			let result = await response.json();
+
+			alert(result.message);
+		};
+	</script>
 	
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
