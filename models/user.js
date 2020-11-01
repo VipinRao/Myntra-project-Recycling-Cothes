@@ -16,7 +16,13 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     shopList : {
-        type : Array,
+        type : [
+            {
+                date : Date,
+                price : Number,
+                name : String
+            }
+    ],
         default : []
     },
     myntraCoin : {

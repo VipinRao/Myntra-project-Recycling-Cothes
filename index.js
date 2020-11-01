@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 
 const app = express(); // express initialization
 
+require('dotenv').config();
 app.engine('handlebars', exphbs());//add a new template/view engine to the app(express object),default layout is set to main(act as  a wrapper for other layouts)
 app.set('view engine', 'handlebars');//set template engine to handlebars for rendering files ending with .handlebars
 //if html is used as a engine then it will render files engin with .html
