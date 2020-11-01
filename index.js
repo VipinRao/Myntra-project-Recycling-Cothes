@@ -19,10 +19,10 @@ app.get('/home',(req,res) => {
 });
 app.get('/product',(req,res) => {
     res.render('product');
-});
-app.get('/single',(req,res) => {
-    res.render('single');
-});
+// });
+// app.get('/single',(req,res) => {
+//     res.render('single');
+// });
 app.get('/about',(req,res) => {
     res.render('about');
 });
@@ -32,6 +32,8 @@ app.get('/contact',(req,res) => {
 app.get('/services',(req,res) => {
     res.render('services');
 });
+
+app.get('/buy')
 //Note index file of static is not rendered bcz the res.render('index') part is above of static implementation
 
 // //using static files
