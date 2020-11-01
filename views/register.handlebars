@@ -1,0 +1,46 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/login.css">
+{{!-- back-slash before css refer to application root --}}
+{{!-- at application root we have made public static sa its folders can be accessed this way --}}
+
+
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4">Welcome, Happy to see you!!</h3>
+              <form method="POST">
+                <div class="form-label-group">
+                  <input type="text" id="username" name = "username" class="form-control" placeholder="username*...." required autofocus>
+                  <label for="username">Username..</label>
+                </div>  
+                <div class="form-label-group">
+                    <input name= "email" id="email" type="text" class="form-control" placeholder="Your Email *" value = "" required/>
+                    <label for="email">Email Address...</label>
+                </div>
+                <div class="form-label-group">
+                  <input type="password" name = "password" id="password" class="form-control" placeholder="password" required>
+                  <label for="password">Password</label>
+                </div>
+                <div class="form-label-group">
+                    <input name= "conformPassword" id="conformPassword" type="password" class="form-control" placeholder="Conform Password *" value="" required/>
+                    <label for="conformPassword">confirm Password</label>
+                </div>
+            
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign up</button>
+              <div class="form-label-group">
+                    <a href="/login" class="btnForgetPwd">Already Registered! Login</a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

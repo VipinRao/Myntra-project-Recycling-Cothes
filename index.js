@@ -19,7 +19,7 @@ app.get('/home',(req,res) => {
 });
 app.get('/product',(req,res) => {
     res.render('product');
-// });
+});
 // app.get('/single',(req,res) => {
 //     res.render('single');
 // });
@@ -33,13 +33,14 @@ app.get('/services',(req,res) => {
     res.render('services');
 });
 
-app.get('/buy')
 //Note index file of static is not rendered bcz the res.render('index') part is above of static implementation
 
 // //using static files
 app.use(express.static(path.join(__dirname,"public")));  //public dir is made static any page can be accessed like localhost:3000/about.html
 // // it is used to handle static servers and no app.get if need to be mentioned
 
+
+app.use('/',require('./routes/auth.js'));
 
 //  using ROUTER functionality  (calling backend js files on some routining)
 // app.use('/api/members',require('./routes/api/members')); //we will require routes files for using /api/members
