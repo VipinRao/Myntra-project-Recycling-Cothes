@@ -20,7 +20,6 @@ require('dotenv').config();
 
 app.engine('handlebars', exphbs());//add a new template/view engine to the app(express object),default layout is set to main(act as  a wrapper for other layouts)
 app.set('view engine', 'handlebars');//set template engine to handlebars for rendering files ending with .handlebars
-//if html is used as a engine then it will render files engin with .html
 
 
 mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser : true,useUnifiedTopology: true})
@@ -74,16 +73,7 @@ app.get('/recycle',(req,res) => {
 // });
 //Note index file of static is not rendered bcz the res.render('index') part is above of static implementation
 
-// //using static files
-app.use(express.static(path.join(__dirname,"public")));  //public dir is made static any page can be accessed like localhost:3000/about.html
-// // it is used to handle static servers and no app.get if need to be mentioned
-
-
-//  using ROUTER functionality  (calling backend js files on some routining)
-// app.use('/api/members',require('./routes/api/members')); //we will require routes files for using /api/members
-// for api/members file members.js wil run on backend side(server side)
-// app.use('login',require('./routes/login'));
-// app.use('/login',require('./routes/login'));
-
+// using static files
+app.use(express.static(path.join(__dirname,"public")));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,() => console.log('listening on port '+ PORT));
