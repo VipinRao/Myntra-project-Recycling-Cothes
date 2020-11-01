@@ -5,7 +5,7 @@ const fs = require('fs');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 
-// const request = require('request-promise');
+const request = require('request-promise');
 
 
 const userModel = require('./models/user.js');
@@ -51,26 +51,29 @@ app.get('/profile',async (req,res) => {
 app.get('/recycle',(req,res) => {
     res.render('recycle');
 });
-// app.post('/submitImage', (req,res) => {
-//     console.log(req.body);
+app.get('/submitImage',async (req,res) => {
 
-    // const options = {
-    //     uri : `https://hotel--backend.herokuapp.com/check-room-available?roomType=${roomType}&startDate=${Date.parse(d1)}&endDate=${Date.parse(d2)}&roomNeeded=${roomNeeded}`,
-    //     json: true,
-    //     resolveWithFullResponse: true,
-    //     method: 'GET',
-    //     headers : {
-    //     }
-    // }
+    const options = {
+        uri : `http://127.0.0.1:5000/for_mask`,
+        json: true,
+        resolveWithFullResponse: true,
+        method: 'GET',
+        body : {
+            'img1' : 'dress.jpg',
+            'img2' : 'dress_soiled.jpg'
+        }
+    }
 
-    // let response;
-    //     try{
-    //         response = await request(options)
-    //     }
-    //     catch(err){
-    //         console.log(err);
-    //     }
-// });
+    let response;
+        try{
+            response = await request(options);
+            console.log(response.body());
+        }
+        catch(err){
+            console.log(err);
+        }
+    res.redirect('profile');
+});
 //Note index file of static is not rendered bcz the res.render('index') part is above of static implementation
 
 // using static files

@@ -117,7 +117,7 @@
 				</div>
 				<div class="col-md-6 animate-box">
 					<h3>Upload Pictures</h3>
-					<form id= "formElem">
+					<form id= "formElem" action="/submitImage">
 						<div class="row form-group">
 							<div class="col-md-6">
 								<!-- <label for="fname">First Name</label> -->
@@ -226,7 +226,7 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
-	<script>
+	{{!-- <script>
 		formElem.onsubmit = async (e) => {
 			e.preventDefault();
 
@@ -239,7 +239,7 @@
 
 			alert(result.message);
 		};
-	</script>
+	</script> --}}
 	
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
