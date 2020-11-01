@@ -38,7 +38,12 @@ app.get('/contact',(req,res) => {
 app.get('/services',(req,res) => {
     res.render('services');
 });
-
+app.get('/profile',(req,res) => {
+    res.render('profile');
+});
+app.get('/recycle',(req,res) => {
+    res.render('recycle');
+});
 //Note index file of static is not rendered bcz the res.render('index') part is above of static implementation
 
 // //using static files
