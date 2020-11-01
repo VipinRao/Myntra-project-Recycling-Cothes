@@ -5,17 +5,25 @@ const fs = require('fs');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 
+const cookieParser = require('cookie-parser');
+
+
+const userModel = require('./models/user.js');
+
 const app = express(); // express initialization
+app.use(express.urlencoded( {extended : true}));
+app.use(express.json());  //middleware for json payload parsing
+app.use(cookieParser());
+
 
 require('dotenv').config();
+
+
 app.engine('handlebars', exphbs());//add a new template/view engine to the app(express object),default layout is set to main(act as  a wrapper for other layouts)
 app.set('view engine', 'handlebars');//set template engine to handlebars for rendering files ending with .handlebars
 //if html is used as a engine then it will render files engin with .html
 
-//we will use express.json for parsing
-app.use(express.json()); // body parser middleware initilization (to parse the body send in request)
-app.use(express.urlencoded({extended: false})); // to handle url encoding
- 
+
 mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser : true,useUnifiedTopology: true})
     .then(() => console.log('Mongo DB connected'))
     .catch((err) => console.log(err));
@@ -38,8 +46,9 @@ app.get('/contact',(req,res) => {
 app.get('/services',(req,res) => {
     res.render('services');
 });
-app.get('/profile',(req,res) => {
-    res.render('profile');
+app.get('/profile',async (req,res) => {
+    const user = await userModel.findOne({username : 'vipin'});
+    res.render('profile',{username:user.username, myntraCoin:user.myntraCoin});
 });
 app.get('/recycle',(req,res) => {
     res.render('recycle');
@@ -50,8 +59,6 @@ app.get('/recycle',(req,res) => {
 app.use(express.static(path.join(__dirname,"public")));  //public dir is made static any page can be accessed like localhost:3000/about.html
 // // it is used to handle static servers and no app.get if need to be mentioned
 
-
-app.use('/',require('./routes/auth.js'));
 
 //  using ROUTER functionality  (calling backend js files on some routining)
 // app.use('/api/members',require('./routes/api/members')); //we will require routes files for using /api/members

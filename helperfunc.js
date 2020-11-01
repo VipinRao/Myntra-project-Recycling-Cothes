@@ -20,7 +20,6 @@ function authCheckIndex(req,res,next){
     } 
 }
 function authCheckLogin(req,res,next){
-    try{
         const token = req.cookies.authToken;
 
         if (!token){
@@ -35,13 +34,9 @@ function authCheckLogin(req,res,next){
                 next();
             }
             else{
-                res.redirect('/');
+                res.redirect('/home');
             }
         }
-    }
-    catch(err){
-        next();
-    }
 }
 
 
