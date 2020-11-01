@@ -3,6 +3,7 @@ const path = require('path');
 // const moment = require('moment');
 const fs = require('fs');
 const exphbs = require('express-handlebars');
+const mongoose = require('mongoose');
 
 const app = express(); // express initialization
 
@@ -14,6 +15,10 @@ app.set('view engine', 'handlebars');//set template engine to handlebars for ren
 app.use(express.json()); // body parser middleware initilization (to parse the body send in request)
 app.use(express.urlencoded({extended: false})); // to handle url encoding
  
+mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser : true,useUnifiedTopology: true})
+    .then(() => console.log('Mongo DB connected'))
+    .catch((err) => console.log(err));
+
 app.get('/home',(req,res) => {
     res.render('index');
 });
